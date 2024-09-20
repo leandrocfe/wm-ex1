@@ -10,6 +10,7 @@
         "filament/forms": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
+        "league/commonmark": "^2.5",
         "saade/filament-extra": "^3.2"
     },
     "require-dev": {
