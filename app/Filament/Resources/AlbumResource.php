@@ -15,9 +15,13 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class AlbumResource extends Resource
 {
+    public static ?string $parentResource = ArtistResource::class; // [!code ex2 highlight]
+
     protected static ?string $model = Album::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static bool $shouldRegisterNavigation = false; // [!code ex2 highlight]
 
     public static function form(Form $form): Form
     {

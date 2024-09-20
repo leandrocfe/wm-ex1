@@ -45,10 +45,7 @@ class ArtistResource extends Resource
                 Tables\Columns\TextColumn::make('country')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('formed_year')
-                    ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('website')
-                    ->searchable(),
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -64,6 +61,9 @@ class ArtistResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('songs') // [!code ex2 highlight]
+                    ->label('Songs') // [!code ex2 highlight]
+                    ->url(fn($record) => ArtistResource::getUrl('album.index', ['parent' => $record->id])), // [!code ex2 highlight]
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -85,6 +85,10 @@ class ArtistResource extends Resource
             'index' => Pages\ListArtists::route('/'),
             'create' => Pages\CreateArtist::route('/create'),
             'edit' => Pages\EditArtist::route('/{record}/edit'),
+
+            'album.index' => AlbumResource\Pages\ListAlbums::route('/{parent}/album'), // [!code ex2 highlight]
+            'album.create' => AlbumResource\Pages\CreateAlbum::route('{parent}/album/create'), // [!code ex2 highlight]
+            'album.edit' => AlbumResource\Pages\EditAlbum::route('{parent}/album/{record}/edit'), // [!code ex2 highlight]
         ];
     }
 }
