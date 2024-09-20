@@ -19,34 +19,25 @@ This guide will show you how to create a nested resource in Filament V3. We will
 
 To create the `Product` resource, run the following command:
 
-```bash
+```terminal
 php artisan filament:resources Product
 ```
 
-```code php
-<?php
-
-namespace BenBjurstrom\Prezet\Extensions;
-
-use Illuminate\Container\Container;
-use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\View\Component;
-use League\CommonMark\Environment\EnvironmentBuilderInterface;
-use League\CommonMark\Event\DocumentRenderedEvent;
-use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
-use League\CommonMark\Extension\ExtensionInterface;
-use League\CommonMark\Node\Node;
-use League\CommonMark\Renderer\ChildNodeRendererInterface;
-use League\CommonMark\Renderer\NodeRendererInterface;
-
-class MarkdownBladeExtension implements ExtensionInterface, NodeRendererInterface
-{
-    public static bool $allowBladeForNextDocument = false;
-
-    public function register(EnvironmentBuilderInterface $environment): void
+```code lang=php
+public static function form(Form $form): Form
     {
-        $environment->addRenderer(FencedCode::class, $this, 100);
-        $environment->addEventListener(DocumentRenderedEvent::class, [$this, 'onDocumentRenderedEvent']);
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('artist_id')
+                    ->required()
+                    ->numeric(),
+                Forms\Components\TextInput::make('title')
+                    ->required(),
+                Forms\Components\DatePicker::make('release_date')
+                    ->required(),
+                Forms\Components\FileUpload::make('cover_image')
+                    ->image(),
+            ]);
     }
 ```
 
@@ -56,7 +47,7 @@ This command will create a `Category` resource with a `name` field.
 
 To create the relationship between the `Product` and `Category` resources, run the following command:
 
-```bash
+```terminal
 php artisan filament:resources:relationship Product category_id
 ```
 
@@ -66,7 +57,7 @@ This command will create a relationship between the `Product` and `Category` res
 
 To create the nested resource, run the following command:
 
-```bash
+```terminal
 php artisan filament:resources:nested Product category_id
 ```
 
@@ -76,7 +67,7 @@ This command will create a nested resource for the `Product` resource. The neste
 
 To create the nested resource's relationship, run the following command:
 
-```bash
+```terminal
 php artisan filament:resources:relationship Category product_id
 ```
 
