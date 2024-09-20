@@ -2,14 +2,14 @@
 
 First, install the package:
 
+```terminal
+composer require saade/filament-extra
+```
+
 ```html blade!
 <x-content.code-test />
 ```
 
-A seguir vem um código
-```bash
-composer require saade/filament-extra
-```
 
 ## Introduction
 
