@@ -2,8 +2,8 @@
 
 First, install the package:
 
-```html +parse
-<x-header page="home" />
+```html blade!
+<x-content.code-test />
 ```
 
 A seguir vem um código
@@ -23,13 +23,7 @@ To create the `Product` resource, run the following command:
 php artisan filament:resources Product
 ```
 
-This command will create a `Product` resource with a `name` field, a `price` field, and a `category_id` field. The `category_id` field will be a dropdown field that allows you to select a category from the database.
-
-## Creating the Category resource
-
-To create the `Category` resource, run the following command:
-
-```php
+```code php
 <?php
 
 namespace BenBjurstrom\Prezet\Extensions;
