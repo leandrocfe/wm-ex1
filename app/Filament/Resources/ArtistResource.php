@@ -61,8 +61,8 @@ class ArtistResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('songs') // [!code ex2 highlight]
-                    ->label('Songs') // [!code ex2 highlight]
+                Tables\Actions\Action::make('albums') // [!code ex2 highlight]
+                    ->label('Albums') // [!code ex2 highlight]
                     ->url(fn($record) => ArtistResource::getUrl('album.index', ['parent' => $record->id])), // [!code ex2 highlight]
             ])
             ->bulkActions([
